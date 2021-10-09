@@ -8,6 +8,11 @@ csvpath = os.path.join('..', 'Resources', "election_data.csv")
 
 candid = []
 
+Name1 = ("Khan")
+Name2 = ("Correy")
+Name3 = ("Li")
+Name4 = ("O'Tooley")
+
 with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     csv_header =next(csvreader)
@@ -17,29 +22,60 @@ with open(csvpath) as csvfile:
 
 # Reference Count of all candidates       
 counts = Counter(candid)
-win = (counts.most_common(1))
+winner = (counts.most_common(1)[0][0])
 
 # Count each Candidate 
-KhanCount = (counts['Khan'])  
-CorreyCount = (counts['Correy'])
-LiCount = (counts['Li'])
-Otooleycount = (counts["O'Tooley"])
+Count1 = (counts['Khan'])  
+Count2 = (counts['Correy'])
+Count3 = (counts['Li'])
+Count4 = (counts["O'Tooley"])
 totalvotes = len(candid)
 
 #Calculate Percentages 
-kper = ((KhanCount/totalvotes * 100))
-cper = ((CorreyCount/totalvotes * 100))
-lper = ((LiCount/totalvotes * 100))
-oper = ((Otooleycount/totalvotes * 100))
+per1 = ((Count1/totalvotes * 100))
+per2 = ((Count2/totalvotes * 100))
+per3 = ((Count3/totalvotes * 100))
+per4 = ((Count4/totalvotes * 100))
 
-#Print Results Table 
+#Print Results Table in Terminal
+
 print("Election Results")
 print("------------------------------")
 print(f'Total Votes: {totalvotes}')
 print("------------------------------")
-print(f'Khan: {format(kper, ",.3f")}% ({KhanCount})')
-print(f'Correy: {format(cper, ",.3f")}% ({CorreyCount})')
-print(f'Li: {format(lper, ",.3f")}% ({LiCount})')
-print(f'OTooley: {format(oper, ",.3f")}% ({Otooleycount})')
+print(f'{Name1}: {format(per1, ",.3f")}% ({Count1})')
+print(f'{Name2}: {format(per2, ",.3f")}% ({Count2})')
+print(f'{Name3}: {format(per3, ",.3f")}% ({Count3})')
+print(f'{Name4}: {format(per4, ",.3f")}% ({Count4})')
 print("------------------------------")
-print(f'Winner: {win} ')
+print(f'Winner: {winner}')
+print("------------------------------")
+
+#Print to text file 
+f = open("output.txt", "a")
+print("Election Results", file=f)
+print("------------------------------", file=f)
+print(f'Total Votes: {totalvotes}', file=f)
+print("------------------------------", file=f)
+print(f'{Name1}: {format(per1, ",.3f")}% ({Count1})', file=f)
+print(f'{Name2}: {format(per2, ",.3f")}% ({Count2})', file=f)
+print(f'{Name3}: {format(per3, ",.3f")}% ({Count3})', file=f)
+print(f'{Name4}: {format(per4, ",.3f")}% ({Count4})', file=f)
+print("------------------------------", file=f)
+print(f'Winner: {winner}', file=f)
+print("------------------------------", file=f)
+f.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
